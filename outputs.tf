@@ -1,3 +1,8 @@
+output "vpc_id" {
+  description = "ID VPC FASTEATS"
+  value       = aws_vpc.vpc_fasteats.id
+}
+
 output "subnet_id" {
   description = "ID da subnet criada na AWS"
   value       = aws_subnet.subnet_fasteats.id
