@@ -35,12 +35,24 @@ resource "aws_vpc" "vpc_fasteats" {
   }
 }
 
-resource "aws_subnet" "subnet_fasteats" {
+resource "aws_subnet" "subnet_fasteats_privada" {
   vpc_id     = aws_vpc.vpc_fasteats.id
   cidr_block = "10.0.1.0/24"
-
+  availability_zone       = "us-east-1b"
+  map_public_ip_on_launch = false  # Private subnet
   tags = {
-    Name = "subnet-fasteats"
+    Name = "subnet-fasteats-privada"
+  }
+}
+
+# Subnets (Public)
+resource "aws_subnet" "subnet_fasteats_publica" {
+  vpc_id                  = aws_vpc.vpc_fasteats.id
+  cidr_block              = "10.0.7.0/24"
+  availability_zone       = "us-east-1a"
+  map_public_ip_on_launch = true
+  tags = {
+    Name = "subnet-fasteats-publica"
   }
 }
 
@@ -66,7 +78,7 @@ resource "aws_route_table" "route_table_fasteats" {
 }
 
 resource "aws_route_table_association" "rta" {
-  subnet_id      = aws_subnet.subnet_fasteats.id
+  subnet_id      = aws_subnet.subnet_fasteats_publica.id
   route_table_id = aws_route_table.route_table_fasteats.id
 }
 

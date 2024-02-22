@@ -3,9 +3,14 @@ output "vpc_id" {
   value       = aws_vpc.vpc_fasteats.id
 }
 
-output "subnet_id" {
+output "subnet_privada_id" {
   description = "ID da subnet criada na AWS"
-  value       = aws_subnet.subnet_fasteats.id
+  value       = aws_subnet.subnet_fasteats_privada.id
+}
+
+output "subnet_publica_id" {
+  description = "ID da subnet criada na AWS"
+  value       = aws_subnet.subnet_fasteats_publica.id
 }
 
 output "security_group_id" {
