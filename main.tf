@@ -48,7 +48,7 @@ resource "aws_subnet" "subnet_fasteats_privada" {
 # Subnets (Public)
 resource "aws_subnet" "subnet_fasteats_publica" {
   vpc_id                  = aws_vpc.vpc_fasteats.id
-  cidr_block              = "10.0.7.0/24"
+  cidr_block              = "10.0.8.0/24"
   availability_zone       = "us-east-1a"
   map_public_ip_on_launch = true
   tags = {
@@ -94,12 +94,12 @@ resource "aws_security_group" "security_group_fasteats" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  #ingress {
-  #  from_port = 8082
-  #  to_port = 8082
-  #  protocol = "tcp"
-  #  cidr_blocks = ["0.0.0.0/0"]
-  #}
+  ingress {
+    from_port = 27017
+    to_port   = 27017
+    protocol  = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   egress {
     from_port   = 0

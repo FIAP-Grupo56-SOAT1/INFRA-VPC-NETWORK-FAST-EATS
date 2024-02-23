@@ -9,7 +9,7 @@ output "subnet_privada_id" {
 }
 
 output "subnet_publica_id" {
-  description = "ID da subnet criada na AWS"
+  description = "ID da subnet publica criada na AWS"
   value       = aws_subnet.subnet_fasteats_publica.id
 }
 
